@@ -33,6 +33,8 @@ RUN mkdir -p $TEMP_CHROOT/etc/yum.repos.d &&\
 RUN mkdir -p $TEMP_CHROOT/etc/pki/rpm-gpg &&\
     cp /etc/pki/rpm-gpg/VMWARE-RPM-GPG-KEY $TEMP_CHROOT/etc/pki/rpm-gpg/VMWARE-RPM-GPG-KEY
 COPY photon-rc-updates.repo $TEMP_CHROOT/etc/yum.repos.d/photon-updates.repo
+COPY photon-extras-rc.repo $TEMP_CHROOT/etc/yum.repos.d/photon-extras.repo
+COPY lightwave.repo $TEMP_CHROOT/etc/yum.repos.d/lightwave.repo
 
 # Cleanup
 RUN cd $TEMP_CHROOT && rm -rf usr/src/ && rm -rf home/* && rm -rf var/log/*
