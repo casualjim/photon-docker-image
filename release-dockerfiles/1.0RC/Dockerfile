@@ -7,15 +7,15 @@ ENV TEMP_CHROOT /temp_chroot
 RUN mkdir /data &&\
     mkdir $TEMP_CHROOT &&\
     mkdir -p $TEMP_CHROOT/var/lib/rpm &&\
-    rpm --root $TEMP_CHROOT/ --initdb
-
+    rpm --root $TEMP_CHROOT/ --initdb &&\
+    rpm --root $TEMP_CHROOT --import /etc/pki/rpm-gpg/VMWARE-RPM-GPG-KEY
 
 # Add RC pkg source to tdnf/yum
 COPY photon-rc.repo /etc/yum.repos.d/photon.repo
 
-RUN tdnf upgrade -y tdnf &&\ 
+RUN tdnf upgrade -y tdnf &&\
     tdnf install -y tar xz &&\
-    tdnf --installroot $TEMP_CHROOT/ install -y --nogpgcheck bash \
+    tdnf --installroot $TEMP_CHROOT/ install -y bash \
     coreutils filesystem findutils glibc grep photon-release photon-repos tdnf util-linux vim which &&\
     tdnf --installroot=$TEMP_CHROOT/ clean all
 
