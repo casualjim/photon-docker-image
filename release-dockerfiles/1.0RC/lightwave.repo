@@ -1,5 +1,5 @@
 [lightwave]
-name=VMware Lightwave 1.0(x86_64)
+name=VMware Lightwave 1.0 (x86_64)
 baseurl=https://dl.bintray.com/vmware/lightwave
 gpgkey=file:///etc/pki/rpm-gpg/VMWARE-RPM-GPG-KEY
 gpgcheck=1
